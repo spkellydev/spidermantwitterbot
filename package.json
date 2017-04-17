@@ -1,5 +1,5 @@
 {
-  "name": "twit_bot",
+  "name": "spidermantwitterbot",
   "version": "1.0.0",
   "description": "Twitter Bot Test",
   "main": "bot.js",

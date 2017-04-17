@@ -53,7 +53,7 @@ function tweetEvent(eventMsg) {
 	console.log(replyto + ' ' + from);
 
 	if (replyto === 'tweeter__parker') {
-		var newtweet = '@' + from + ' thank you for tweeting at me!';
+		var newtweet = '@' + from + '  tell me what your fav #spidey comic is!';
 		tweetIt(newtweet);
 	}
 }
@@ -114,7 +114,7 @@ var retweet = function() {
 // grab & retweet as soon as program is running...
 retweet();
 // retweet in every 2 minutes
-setInterval(retweet, 60*1000*2);
+setInterval(retweet, 60*1000*6);
 
 // FAVORITE BOT====================
 
@@ -203,7 +203,7 @@ fs.readdir(__dirname + '/images', function(err, files) {
   */
     setInterval(function(){
       upload_random_image(images);
-    }, 1000*60*20);
+    }, 1000*60*4);
 
   /*
     Or you could use cron (code.tutsplus.com/tutorials/scheduling-tasks-with-cron-jobs--net-8800), in which case you just need:
@@ -217,7 +217,7 @@ fs.readdir(__dirname + '/images', function(err, files) {
 // grab & 'favorite' as soon as program is running...
 favoriteTweet();
 // 'favorite' a tweet in every 6 minutes
-setInterval(favoriteTweet, 60*1000*6);
+setInterval(favoriteTweet, 60*1000*20);
 
 // function to generate a random tweet tweet
 function ranDom (arr) {

@@ -96,6 +96,11 @@ function tweetIt(txt) {
 }
 // find latest tweet according the query 'q' in params
 var retweet = function(q) {
+  if (!q) {
+    console.log("no q");
+    let q = ranDom(airstreamHashes);
+    console.log(q);
+  }
   var params = {
     q: "#" + q,
     result_type: "recent",
@@ -137,6 +142,10 @@ var retweet = function(q) {
 };
 
 var retweetA = function(q) {
+  if (!q) {
+    console.log("no q");
+    let q = ranDom(airstreamHashes);
+  }
   var params = {
     q: "#" + q,
     result_type: "recent",
@@ -177,8 +186,7 @@ var retweetA = function(q) {
 retweet("airstream");
 retweetA("EndlessCaravan");
 // retweet in every 6 minutes
-setInterval(retweet, 60 * 1000 * 6);
-setInterval(retweetA, 60 * 1000 * 13);
+setInterval(retweetA, 60 * 1000 * Math.floor(Math.random() * 20));
 
 // FAVORITE BOT====================
 

@@ -50,7 +50,7 @@ function tweetEvent(eventMsg) {
 
   console.log(replyto + " " + from);
 
-  if (replyto === "SuperBo78959631") {
+  if (replyto === "airstreamiest") {
     var newtweet = "@" + from + "  tell me about your favorite Airstream";
     tweetIt(newtweet);
   }
@@ -149,7 +149,7 @@ var retweetA = function() {
 // grab & retweet as soon as program is running...
 retweet();
 retweetA();
-// retweet in every 2 minutes
+// retweet in every 6 minutes
 setInterval(retweet, 60 * 1000 * 6);
 setInterval(retweetA, 60 * 1000 * 13);
 
@@ -188,7 +188,7 @@ var favoriteTweet = function() {
 
 // grab & 'favorite' as soon as program is running...
 favoriteTweet();
-// 'favorite' a tweet in every 3 minutes
+// 'favorite' a tweet in every 5 minutes
 setInterval(favoriteTweet, 60 * 1000 * 5);
 
 // function to generate a random tweet tweet

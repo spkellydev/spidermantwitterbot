@@ -6,6 +6,46 @@ var config = require("./config");
 
 var T = new Twit(config);
 
+const airstreamHashes = [
+  "liveriveted",
+  "EndlessCaravan",
+  "tinyhouse",
+  "vanlife",
+  "rvlife",
+  "airstreamlife",
+  "airstream",
+  "Airstream",
+  "rv",
+  "camper",
+  "camperlife",
+  "airstreamdreams",
+  "airstreamrenovation",
+  "travel",
+  "travellife",
+  "tinyhousemovement",
+  "airstreamambassadors",
+  "roadtrip",
+  "motorhome",
+  "traveltrailer",
+  "Glamping",
+  "glamping",
+  "homeiswhereyouparkit",
+  "vintagetrailer",
+  "gorving",
+  "rvliving",
+  "fulltimerv",
+  "nomad",
+  "boondocking",
+  "Alumapalooza",
+  "camping",
+  "getaway",
+  "digitalnomad",
+  "adventure",
+  "caravan",
+  "caravans",
+  "lifegoals"
+];
+
 /* var params = {
 	q: 'comics since:2017-4-14',
 	count: 2
@@ -71,47 +111,10 @@ function tweetIt(txt) {
     }
   }
 }
-// find latest tweet according the query 'q' in params
-var retweet = function() {
-  var params = {
-    q: "#airstream",
-    result_type: "recent",
-    lang: "en"
-  };
-  T.get("search/tweets", params, function(err, data) {
-    // if there no errors
-    if (!err) {
-      // grab ID of tweet to retweet
-      var retweetId = data.statuses[0].id_str;
-      // Tell T to retweet
-      T.post(
-        "statuses/retweet/:id",
-        {
-          id: retweetId
-        },
-        function(err, response) {
-          if (response) {
-            console.log("Retweeted!!!");
-          }
-          // if there was an error while tweeting
-          if (err) {
-            console.log(
-              "Something went wrong while RETWEETING... Duplication maybe..."
-            );
-          }
-        }
-      );
-    }
-    // if unable to Search a tweet
-    else {
-      console.log("Something went wrong while SEARCHING...");
-    }
-  });
-};
 
-var retweetA = function() {
+var retweet = function(q) {
   var params = {
-    q: "#Airstream",
+    q: "#" + q,
     result_type: "recent",
     lang: "en"
   };
@@ -119,7 +122,9 @@ var retweetA = function() {
     // if there no errors
     if (!err) {
       // grab ID of tweet to retweet
-      var retweetId = data.statuses[0].id_str;
+      var tweet = data.statuses;
+      var randomTweet = ranDom(tweet);
+      var retweetId = randomTweet.id_str;
       // Tell T to retweet
       T.post(
         "statuses/retweet/:id",
@@ -135,6 +140,10 @@ var retweetA = function() {
             console.log(
               "Something went wrong while RETWEETING... Duplication maybe..."
             );
+            console.log("Something went wrong while SEARCHING...");
+            var airstreamTweet = ranDom(airstreamHashes);
+            console.log(airstreamTweet);
+            retweet(airstreamHashes[airstreamTweet]);
           }
         }
       );
@@ -142,16 +151,16 @@ var retweetA = function() {
     // if unable to Search a tweet
     else {
       console.log("Something went wrong while SEARCHING...");
+      var airstreamTweet = ranDom(airstreamHashes);
+      retweet(airstreamHashes[airstreamTweet]);
     }
   });
 };
 
 // grab & retweet as soon as program is running...
-retweet();
-retweetA();
+retweet("EndlessCaravan");
 // retweet in every 6 minutes
 setInterval(retweet, 60 * 1000 * 6);
-setInterval(retweetA, 60 * 1000 * 13);
 
 // FAVORITE BOT====================
 
@@ -178,6 +187,8 @@ var favoriteTweet = function() {
         // if there was an error while 'favorite'
         if (err) {
           console.log("CANNOT BE FAVORITE... Error");
+          var airstreamTweet = ranDom(airstreamHashes);
+          favoriteTweet(airstreamHashes[airstreamTweet]);
         } else {
           console.log("FAVORITED... Success!!!");
         }

@@ -253,8 +253,8 @@ var favoriteTweet = function() {
 
 // grab & 'favorite' as soon as program is running...
 favoriteTweet();
-// 'favorite' a tweet in every 6 minutes
-setInterval(favoriteTweet, 60 * 1000 * 20);
+// 'favorite' a tweet in every 3 minutes
+setInterval(favoriteTweet, 30 * 1000 * 20);
 
 // function to generate a random tweet tweet
 function ranDom(arr) {

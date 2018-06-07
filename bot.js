@@ -135,8 +135,12 @@ var retweet = function(q) {
     }
     // if unable to Search a tweet
     else {
-      console.log("Something went wrong while SEARCHING...");
-      retweet("liveriveted");
+      if (err.code === 88) {
+        setTimeout(function() {
+          console.log("Something went wrong while SEARCHING...");
+          retweet("liveriveted");
+        }, 60 * 1000 * 60);
+      }
     }
   });
 };
@@ -224,10 +228,18 @@ var favoriteTweet = function() {
 // grab & 'favorite' as soon as program is running...
 favoriteTweet();
 // 'favorite' a tweet in every 5 minutes
-setInterval(favoriteTweet, 60 * 1000 * 5);
+setInterval(favoriteTweet, 60 * 1000 * 15);
 
 // function to generate a random tweet tweet
 function ranDom(arr) {
-  var index = Math.floor(Math.random() * arr.length);
-  return arr[index];
+  if (arr === undefined) {
+    setTimeout(function() {
+      console.log("timeout for 30 minutes");
+      var index = Math.floor(Math.random() * arr.length);
+      return arr[index];
+    }, 60 * 1000 * 30);
+  } else {
+    var index = Math.floor(Math.random() * arr.length);
+    return arr[index];
+  }
 }

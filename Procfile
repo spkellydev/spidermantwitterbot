@@ -1,1 +1,1 @@
-worker: node bot.js
+worker: yarn install; node bot.js

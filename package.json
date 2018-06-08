@@ -14,10 +14,9 @@
   ],
   "author": "SPKellyDev",
   "license": "ISC",
-  "devDependencies": {
-    "twit": "^2.2.5"
-  },
+  "devDependencies": {},
   "dependencies": {
+    "twit": "^2.2.5",
     "logger": "^0.0.1"
   }
 }

@@ -1,10 +1,11 @@
-console.log("the bot is starting");
 var fs = require("fs");
 var path = require("path");
+const logger = require("./util/logger");
 var Twit = require("twit");
 var config = require("./config");
 
 var T = new Twit(config);
+logger.info("Initizialization", { twitter: "bot started" });
 
 const airstreamHashes = [
   "liveriveted",
@@ -52,21 +53,25 @@ var stream = T.stream("user");
 stream.on("follow", followed);
 
 function followed(eventMsg) {
-  console.log("Follow event!");
   var name = eventMsg.source.name;
   var screenName = eventMsg.source.screen_name;
-  tweetIt("@" + screenName + "  thanks for following!");
+
+  if (screenName) {
+    tweetIt("@" + screenName + "  thanks for following!");
+    logger.info("Event", {
+      twitter: "Follow Event",
+      screenName: screenName,
+      name: name
+    });
+  } else {
+    logger.bug("Event", { twitter: "Could not Follow", eventMsg: eventMsg });
+  }
 }
 
 //Anytime someone tweets me
 stream.on("tweet", tweetEvent);
 
 function tweetEvent(eventMsg) {
-  //console.log('eventMsg');
-  //var fs = require('fs');
-  //var json = JSON.stringify(eventMsg,null,2);
-  //fs.writeFile("tweet.json", json);
-
   var replyto = eventMsg.in_reply_to_screen_name;
   var text = eventMsg.text;
   var from = eventMsg.user.screen_name;
@@ -89,64 +94,22 @@ function tweetIt(txt) {
   function tweeted(err, data, response) {
     if (err) {
       console.log("Something went wrong!");
+      logger.bug("Event", {
+        twitter: "Tweet Event",
+        err: err
+      });
     } else {
-      console.log("It worked!");
+      console.log(data);
+      logger.info("Event", {
+        twitter: "Tweet Event",
+        updateData: data
+      });
     }
   }
 }
-// find latest tweet according the query 'q' in params
-var retweet = function(q) {
-  if (!q) {
-    console.log("no q");
-    let q = ranDom(airstreamHashes);
-    console.log(q);
-  }
-  var params = {
-    q: "#" + q,
-    result_type: "recent",
-    lang: "en"
-  };
-  T.get("search/tweets", params, function(err, data) {
-    // if there no errors
-    if (!err) {
-      // grab ID of tweet to retweet
-      var retweetId = data.statuses[0].id_str;
-      // Tell T to retweet
-      T.post(
-        "statuses/retweet/:id",
-        {
-          id: retweetId
-        },
-        function(err, response) {
-          if (response) {
-            console.log("Retweeted!!!");
-          }
-          // if there was an error while tweeting
-          if (err) {
-            console.log(
-              "Something went wrong while RETWEETING... Duplication maybe..."
-            );
-            var airstreamTweet = ranDom(airstreamHashes);
-            console.log(airstreamTweet);
-            retweet(airstreamTweet);
-          }
-        }
-      );
-    }
-    // if unable to Search a tweet
-    else {
-      if (err.code === 88) {
-        setTimeout(function() {
-          console.log("Something went wrong while SEARCHING...");
-          retweet("liveriveted");
-        }, 60 * 1000 * 60);
-      }
-    }
-  });
-};
 
-var retweetA = function(q) {
-  if (!q) {
+var retweet = function(q) {
+  if (typeof q === "undefined") {
     console.log("no q");
     let q = ranDom(airstreamHashes);
   }
@@ -155,11 +118,15 @@ var retweetA = function(q) {
     result_type: "recent",
     lang: "en"
   };
+
   T.get("search/tweets", params, function(err, data) {
     // if there no errors
     if (!err) {
+      console.log("data", data);
       // grab ID of tweet to retweet
+
       var retweetId = data.statuses[0].id_str;
+
       // Tell T to retweet
       T.post(
         "statuses/retweet/:id",
@@ -167,14 +134,24 @@ var retweetA = function(q) {
           id: retweetId
         },
         function(err, response) {
-          if (response) {
+          if (response.id_str !== "undefined") {
             console.log("Retweeted!!!");
+            logger.info("Event", {
+              twitter: "Retweet Event",
+              tweetID: response.id_str,
+              tweet: response.text,
+              hashtags: response.entities
+            });
           }
           // if there was an error while tweeting
           if (err) {
             console.log(
               "Something went wrong while RETWEETING... Duplication maybe..."
             );
+            logger.bug("Event", {
+              twitter: "Retweet Event",
+              err: err.err.Error
+            });
           }
         }
       );
@@ -182,15 +159,18 @@ var retweetA = function(q) {
     // if unable to Search a tweet
     else {
       console.log("Something went wrong while SEARCHING...");
+      logger.bug("Search", {
+        twitter: "Search Failed",
+        err: JSON.stringify(err.message)
+      });
     }
   });
 };
 
 // grab & retweet as soon as program is running...
-retweet("airstream");
-retweetA("EndlessCaravan");
+retweet("liveriveted");
 // retweet in every 6 minutes
-setInterval(retweetA, 60 * 1000 * Math.floor(Math.random() * 20));
+setInterval(retweet, 60 * 1000 * Math.floor(Math.random() * 20));
 
 // FAVORITE BOT====================
 
@@ -217,8 +197,16 @@ var favoriteTweet = function() {
         // if there was an error while 'favorite'
         if (err) {
           console.log("CANNOT BE FAVORITE... Error");
+          logger.bug("Event", {
+            twitter: "Favorite Event",
+            nonfavoritedTweet: randomTweet
+          });
         } else {
           console.log("FAVORITED... Success!!!");
+          logger.info("Event", {
+            twitter: "Favorite Event",
+            tweetID: randomTweet.id_str
+          });
         }
       });
     }
@@ -233,8 +221,8 @@ setInterval(favoriteTweet, 60 * 1000 * 15);
 // function to generate a random tweet tweet
 function ranDom(arr) {
   if (arr === undefined) {
+    logger.bug("Rate Limiting", { timeout: "30 minutes" });
     setTimeout(function() {
-      console.log("timeout for 30 minutes");
       var index = Math.floor(Math.random() * arr.length);
       return arr[index];
     }, 60 * 1000 * 30);

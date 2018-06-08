@@ -108,11 +108,28 @@ function tweetIt(txt) {
   }
 }
 
+function filterByScreenName(tweets) {
+  const blacklist = ["airstreamiest", "airstreamsc", "airstream4sale"];
+  let usable = [];
+  tweets.forEach((tweet, i) => {
+    if (!blacklist.includes(tweet.user.screen_name.toLowerCase())) {
+      usable.push({
+        screen_name: tweet.user.screen_name,
+        id_str: tweet.id_str,
+        text: tweet.text
+      });
+    }
+  });
+
+  return usable;
+}
+
 var retweet = function(q) {
   if (typeof q === "undefined") {
     console.log("no q");
-    let q = ranDom(airstreamHashes);
+    return;
   }
+
   var params = {
     q: "#" + q,
     result_type: "recent",
@@ -122,10 +139,13 @@ var retweet = function(q) {
   T.get("search/tweets", params, function(err, data) {
     // if there no errors
     if (!err) {
-      console.log("data", data);
       // grab ID of tweet to retweet
 
-      var retweetId = data.statuses[0].id_str;
+      let availableRetweets = data.statuses;
+      availableRetweets = filterByScreenName(availableRetweets);
+      logger.info("retweet", availableRetweets);
+
+      var retweetId = availableRetweets[0].id_str;
 
       // Tell T to retweet
       T.post(
@@ -145,12 +165,9 @@ var retweet = function(q) {
           }
           // if there was an error while tweeting
           if (err) {
-            console.log(
-              "Something went wrong while RETWEETING... Duplication maybe..."
-            );
             logger.bug("Event", {
               twitter: "Retweet Event",
-              err: err.err.Error
+              err: err.message
             });
           }
         }
@@ -168,7 +185,7 @@ var retweet = function(q) {
 };
 
 // grab & retweet as soon as program is running...
-retweet("liveriveted");
+retweet("airstream");
 // retweet in every 6 minutes
 setInterval(retweet, 60 * 1000 * Math.floor(Math.random() * 20));
 
@@ -177,14 +194,14 @@ setInterval(retweet, 60 * 1000 * Math.floor(Math.random() * 20));
 // find a random tweet and 'favorite' it
 var favoriteTweet = function() {
   var params = {
-    q: "#airstream",
+    q: "#liveriveted",
     result_type: "recent",
     lang: "en"
   };
   // find the tweet
   T.get("search/tweets", params, function(err, data) {
     // find tweets
-    var tweet = data.statuses;
+    var tweet = filterByScreenName(data.statuses);
     var randomTweet = ranDom(tweet); // pick a random tweet
 
     // if random tweet exists
@@ -205,7 +222,8 @@ var favoriteTweet = function() {
           console.log("FAVORITED... Success!!!");
           logger.info("Event", {
             twitter: "Favorite Event",
-            tweetID: randomTweet.id_str
+            tweetID: randomTweet.id_str,
+            text: randomTweet.text
           });
         }
       });

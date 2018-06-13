@@ -101,7 +101,13 @@ function filterByScreenName(tweets) {
     "airstreamofchi",
     "airstreamofutah",
     "airstreamoftx",
-    "airstreamofaz"
+    "airstreamofaz",
+    "Butlerstrategic",
+    "camperbroshop",
+    "squemish_toyota",
+    "classiccoachrv",
+    "simpsonsmcc",
+    "motorhomea"
   ];
 
   let usable = [];

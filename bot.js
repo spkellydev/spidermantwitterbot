@@ -187,7 +187,7 @@ var retweet = function(q) {
 // grab & retweet as soon as program is running...
 retweet("airstream");
 // retweet in every 6 minutes
-setInterval(retweet, 60 * 1000 * Math.floor(Math.random() * 20));
+setInterval(retweet, 60 * 1000 * Math.floor(Math.random() * (120 - 55)) + 55);
 
 // FAVORITE BOT====================
 
@@ -234,7 +234,7 @@ var favoriteTweet = function() {
 // grab & 'favorite' as soon as program is running...
 favoriteTweet();
 // 'favorite' a tweet in every 5 minutes
-setInterval(favoriteTweet, 60 * 1000 * 15);
+setInterval(favoriteTweet, 60 * 1000 * (115 - 55) + 55);
 
 // function to generate a random tweet tweet
 function ranDom(arr) {

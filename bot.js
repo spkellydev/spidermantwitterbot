@@ -11,18 +11,13 @@ const airstreamHashes = [
   "liveriveted",
   "EndlessCaravan",
   "tinyhouse",
-  "vanlife",
-  "rvlife",
   "airstreamlife",
   "airstream",
   "Airstream",
-  "rv",
   "camper",
   "camperlife",
   "airstreamdreams",
   "airstreamrenovation",
-  "travel",
-  "travellife",
   "tinyhousemovement",
   "airstreamambassadors",
   "roadtrip",
@@ -32,19 +27,9 @@ const airstreamHashes = [
   "glamping",
   "homeiswhereyouparkit",
   "vintagetrailer",
-  "gorving",
-  "rvliving",
-  "fulltimerv",
-  "nomad",
   "boondocking",
   "Alumapalooza",
-  "camping",
-  "getaway",
-  "digitalnomad",
-  "adventure",
-  "caravan",
-  "caravans",
-  "lifegoals"
+  "camping"
 ];
 //User Stream
 var stream = T.stream("user");
@@ -109,7 +94,16 @@ function tweetIt(txt) {
 }
 
 function filterByScreenName(tweets) {
-  const blacklist = ["airstreamiest", "airstreamsc", "airstream4sale"];
+  const blacklist = [
+    "airstreamiest",
+    "airstreamsc",
+    "airstream4sale",
+    "airstreamofchi",
+    "airstreamofutah",
+    "airstreamoftx",
+    "airstreamofaz"
+  ];
+
   let usable = [];
   tweets.forEach((tweet, i) => {
     if (!blacklist.includes(tweet.user.screen_name.toLowerCase())) {

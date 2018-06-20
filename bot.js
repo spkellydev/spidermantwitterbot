@@ -126,8 +126,8 @@ function filterByScreenName(tweets) {
 
 var retweet = function(q) {
   if (typeof q === "undefined") {
-    console.log("no q");
-    return;
+    q = ranDom(airstreamHashes);
+    console.log(q);
   }
 
   var params = {
@@ -187,14 +187,16 @@ var retweet = function(q) {
 // grab & retweet as soon as program is running...
 retweet("airstream");
 // retweet in every 6 minutes
-setInterval(retweet, 60 * 1000 * Math.floor(Math.random() * (120 - 55)) + 55);
+setInterval(retweet, 60 * 1000 * Math.floor(Math.random() * 120));
 
 // FAVORITE BOT====================
 
 // find a random tweet and 'favorite' it
 var favoriteTweet = function() {
+  q = ranDom(airstreamHashes);
+
   var params = {
-    q: "#liveriveted",
+    q: "#" + q,
     result_type: "recent",
     lang: "en"
   };
@@ -234,7 +236,7 @@ var favoriteTweet = function() {
 // grab & 'favorite' as soon as program is running...
 favoriteTweet();
 // 'favorite' a tweet in every 5 minutes
-setInterval(favoriteTweet, 60 * 1000 * (115 - 55) + 55);
+setInterval(favoriteTweet, 60 * 1000 * 25);
 
 // function to generate a random tweet tweet
 function ranDom(arr) {

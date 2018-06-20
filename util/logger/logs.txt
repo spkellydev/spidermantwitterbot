@@ -1,0 +1,89 @@
+
+info [Wed Jun 13 2018 05:09:16 GMT-0400 (Eastern Daylight Time)]  Initizialization { twitter: 'bot started' }
+
+info [Wed Jun 13 2018 05:10:06 GMT-0400 (Eastern Daylight Time)]  Initizialization { twitter: 'bot started' }
+
+info [Wed Jun 13 2018 05:11:10 GMT-0400 (Eastern Daylight Time)]  Initizialization { twitter: 'bot started' }
+
+info [Wed Jun 13 2018 05:12:17 GMT-0400 (Eastern Daylight Time)]  Initizialization { twitter: 'bot started' }
+
+info [Wed Jun 13 2018 05:13:18 GMT-0400 (Eastern Daylight Time)]  Initizialization { twitter: 'bot started' }
+
+info [Wed Jun 13 2018 11:19:28 GMT-0400 (Eastern Daylight Time)]  Initizialization { twitter: 'bot started' }
+info [Wed Jun 13 2018 11:19:28 GMT-0400 (Eastern Daylight Time)]  retweet [ { screen_name: 'mjcfl00ring',
+    id_str: '1006916347568193537',
+    text: '@Polyflorltd Standard safety flooring installed on @Redwellbrewing #airstream trailer. \nhttps://t.co/OHO5Erptew… https://t.co/omEOJ26Xay' },
+  { screen_name: 'ShowhomesofSF',
+    id_str: '1006904034022838274',
+    text: 'Are you planning on traveling this summer? Sarah of craftywestern sure knows how to travel in style with her vintag… https://t.co/9AXgivJIT9' },
+  { screen_name: 'xxmusicgypsyxx',
+    id_str: '1006903443674370049',
+    text: 'Third time at a shop, cmon #Airstream? https://t.co/ka9MYUzMLT' },
+  { screen_name: 'TheEpicNomadTV',
+    id_str: '1006894898275143680',
+    text: 'RT @DrivinVibin: Just posing for a #youtube thumbnail after a long day of renovations 💪🏻😜\n.\n.\n.\n#airstream #homeiswhereyouparkit #nomadlife…' },
+  { screen_name: 'TheEpicNomadTV',
+    id_str: '1006894606921936896',
+    text: 'RT @DrivinVibin: Back to work! Making templates for the subfloor - https://t.co/9mLwvFGlOr\n\n#airstream #argosy #vintage #renovation #travel…' },
+  { screen_name: 'TheEpicNomadTV',
+    id_str: '1006894294156894208',
+    text: 'RT @1stclassRVad: FREE CAMPING ⛺️ in Florida!!!\n\nhttps://t.co/DqqYP7FCjl\n\n#rv #outdoors #camping #travel #rvfamily #rvlife #rvliving #rvlif…' },
+  { screen_name: 'showhomesmn',
+    id_str: '1006889003742908417',
+    text: 'Are you planning on traveling this summer? Sarah of craftywestern sure knows how to travel in style with her vintag… https://t.co/CNUtvbIPgT' },
+  { screen_name: 'MikeCal60228895',
+    id_str: '1006888994695794688',
+    text: 'Are you planning on traveling this summer? Sarah of craftywestern sure knows how to travel in style with her vintag… https://t.co/QrvQsiqpO7' },
+  { screen_name: 'ShowhomesW',
+    id_str: '1006888977146802176',
+    text: 'Are you planning on traveling this summer? Sarah of craftywestern sure knows how to travel in style with her vintag… https://t.co/WQW0IXM32Y' },
+  { screen_name: 'BobKohlruss',
+    id_str: '1006888964253454337',
+    text: 'Are you planning on traveling this summer? Sarah of craftywestern sure knows how to travel in style with her vintag… https://t.co/loNuWe7bnG' },
+  { screen_name: 'ShowhomesTulsa',
+    id_str: '1006888954518474752',
+    text: 'Are you planning on traveling this summer? Sarah of craftywestern sure knows how to travel in style with her vintag… https://t.co/cvDABfniq6' },
+  { screen_name: 'ShowhomesCorp',
+    id_str: '1006888953042100224',
+    text: 'Are you planning on traveling this summer? Sarah of craftywestern sure knows how to travel in style with her vintag… https://t.co/923jAGew81' },
+  { screen_name: 'rcmcginley',
+    id_str: '1006883979939598336',
+    text: 'Eagle Creek Falls rushes down to Emerald Bay at sunset on the shores of Lake Tahoe, #California. #Airstream… https://t.co/O2nbDa0k84' },
+  { screen_name: 'ShowhomesHV',
+    id_str: '1006873967087509504',
+    text: 'Are you planning on traveling this summer? Sarah of craftywestern sure knows how to travel in style with her vintag… https://t.co/6gmzobsMzZ' } ]
+debug [Wed Jun 13 2018 11:19:29 GMT-0400 (Eastern Daylight Time)]  [ 'Event',
+  { twitter: 'Favorite Event',
+    nonfavoritedTweet: 
+     { screen_name: 'sarachev86',
+       id_str: '1005862153436483584',
+       text: 'RT @AirstreamNJ: Come by the dealership to check out our huge #Airstream collection! ☀️ #airstreamlife #liveriveted https://t.co/DOTjidNFyo' } } ]
+info [Wed Jun 13 2018 11:19:29 GMT-0400 (Eastern Daylight Time)]  Event { twitter: 'Retweet Event',
+  tweetID: '1006918988037873664',
+  tweet: 'RT @mjcfl00ring: @Polyflorltd Standard safety flooring installed on @Redwellbrewing #airstream trailer. \nhttps://t.co/OHO5Erptew \n#norwich…',
+  hashtags: 
+   { hashtags: 
+      [ { text: 'airstream', indices: [ 84, 94 ] },
+        { text: 'norwich', indices: [ 130, 138 ] } ],
+     symbols: [],
+     user_mentions: 
+      [ { screen_name: 'mjcfl00ring',
+          name: 'mjc flooring',
+          id: 615593425,
+          id_str: '615593425',
+          indices: [ 3, 15 ] },
+        { screen_name: 'Polyflorltd',
+          name: 'Polyflor',
+          id: 305020400,
+          id_str: '305020400',
+          indices: [ 17, 29 ] },
+        { screen_name: 'Redwellbrewing',
+          name: 'Redwell',
+          id: 1208527076,
+          id_str: '1208527076',
+          indices: [ 68, 83 ] } ],
+     urls: 
+      [ { url: 'https://t.co/OHO5Erptew',
+          expanded_url: 'http://www.mjcflooring.co.uk',
+          display_url: 'mjcflooring.co.uk',
+          indices: [ 105, 128 ] } ] } }

@@ -102,12 +102,14 @@ function filterByScreenName(tweets) {
     "airstreamofutah",
     "airstreamoftx",
     "airstreamofaz",
-    "Butlerstrategic",
+    "butlerstrategic",
     "camperbroshop",
     "squemish_toyota",
     "classiccoachrv",
     "simpsonsmcc",
-    "motorhomea"
+    "motorhomea",
+    "tilburyautorv",
+    "woodlandtravelc"
   ];
 
   let usable = [];
@@ -251,3 +253,13 @@ function ranDom(arr) {
     return arr[index];
   }
 }
+
+let colonial = T.stream("statuses/filter", { follow: "186813268" });
+
+colonial.on("data", tweet => {
+  console.log(tweet);
+});
+
+colonial.on("error", error => {
+  console.log(error);
+});
